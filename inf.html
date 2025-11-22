@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <title>Logomo Info</title>
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f5f5f5;
+      padding-top: 80px; /* Space for fixed header */
+    }
+
+    /* Header Styles */
+    .containers {
+      background-color: gray;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+      padding: 15px 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .contents {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 15px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Mobile Navigation */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Main Content Sections */
+    .container, .container1 {
+      background-color: #fff;
+      border-radius: 8px;
+      margin: 20px auto;
+      max-width: 1200px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      background-color: #f8f9fa;
+      text-align: center;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+
+    .content2 {
+      background-color: #f8f9fa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 10px;
+      border-radius: 8px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .content2:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .content2 a {
+      font-weight: bold;
+    }
+
+    .fa-infinity, .fa-diagram-project, .fa-dollar-sign, 
+    .fa-magnifying-glass-plus, .fa-bolt {
+      color: #3498db;
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .content3 {
+      background-color: #f8f9fa;
+      margin-top: 10px;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+      line-height: 1.6;
+    }
+
+    h3 {
+      background-color: #f8f9fa;
+      text-align: center;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 30px auto 20px;
+      max-width: 1200px;
+      color: #2c3e50;
+    }
+
+    /* Form Styling */
+    .formgroup {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 25px;
+      max-width: 1200px;
+      margin: 0 auto 30px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .formgroup p {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #2c3e50;
+      font-weight: bold;
+    }
+
+    .log {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      border-color: #3498db;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .fin {
+      text-align: center;
+    }
+
+    input[type="submit"] {
+      background-color: gray;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background-color: greenyellow;
+    }
+
+    /* Footer */
+    footer {
+      background-color: gray;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    footer p {
+      line-height: 1.8;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px;
+      }
+      
+      .contents {
+        flex-wrap: wrap;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+      
+      nav {
+        width: 100%;
+        display: none;
+      }
+      
+      nav.active {
+        display: block;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        margin-top: 15px;
+        gap: 5px;
+      }
+      
+      nav ul li a {
+        display: block;
+        text-align: center;
+        padding: 10px;
+      }
+      
+      .container, .container1, .formgroup {
+        margin: 15px;
+        padding: 15px;
+      }
+      
+      .content2, .content3 {
+        padding: 15px;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .service-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      
+      .service-item {
+        margin-bottom: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="containers">
+    <div class="contents">
+      <h1 class="logo">LoGoMo</h1>
+      <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav id="mainNav">
+        <ul>
+          <li><a href="st.html">Store</a></li>
+          <li><a href="hm.html">Home</a></li>
+          <li><a href="#">Info</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>  
+
+  <div class="container">
+    <div class="content1">
+      <h2>All About LoGoMo</h2>
+    </div>
+    <div class="content2">
+      <i class="fa-solid fa-infinity"></i>
+      <span>About Us</span>
+    </div>
+    <div class="content3">
+      LoGoMo is a revolutionary online car dealership that connects buyers with their dream vehicles. We specialize in sourcing, inspecting, and delivering high-quality cars directly to your doorstep. With our transparent pricing and nationwide shipping, we make car buying simple, safe, and convenient.
+    </div>
+  </div>
+  
+  <div class="container1">
+    <div class="content1">
+      <h2>Our Services</h2>
+    </div>
+    
+    <div class="service-grid">
+      <div class="service-item">
+        <div class="content2">
+          <i class="fa-solid fa-diagram-project"></i>
+          <span>Sourcing</span>
+        </div>
+        <div class="content3">
+          Our expert team scours the market to find the perfect vehicle that matches your specifications and budget. We have access to exclusive auctions and private sellers nationwide, ensuring you get the best selection of quality vehicles.
+        </div>
+      </div>
+      
+      <div class="service-item">
+        <div class="content2">
+          <i class="fa-solid fa-dollar-sign"></i>
+          <span>Pricing</span>
+        </div>
+        <div class="content3">
+          We offer transparent, competitive pricing with no hidden fees. Our pricing model includes vehicle cost, inspection fees, documentation, and delivery - all clearly itemized so you know exactly what you're paying for.
+        </div>
+      </div>
+      
+      <div class="service-item">
+        <div class="content2">
+          <i class="fa-solid fa-magnifying-glass-plus"></i>
+          <span>Inspecting</span>
+        </div>
+        <div class="content3">
+          Every vehicle undergoes a rigorous 150-point inspection by certified mechanics. We check mechanical systems, body condition, interior features, and provide a detailed vehicle history report for complete peace of mind.
+        </div>
+      </div>
+      
+      <div class="service-item">
+        <div class="content2">
+          <i class="fa-solid fa-bolt"></i>
+          <span>Shipping & Delivery</span>
+        </div>
+        <div class="content3">
+          We coordinate nationwide shipping through trusted carriers. Your vehicle arrives safely at your preferred location, fully insured during transit. We also offer local delivery options in major metropolitan areas.
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <h3>Contact Us</h3>
+  <div class="formgroup">
+    <p>Join Us Here</p>
+    <form action="/submit" method="post">
+      <div class="log">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="log">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="log">
+        <label for="comments">Comments:</label>
+        <textarea id="comments" name="comments" rows="4" placeholder="Enter your comments here..."></textarea>
+      </div>
+      <div class="fin">
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+  </div>
+  
+  <footer>
+    <p>LoGoMo Online Car Store &copy; 2025<br>By Abdullahi Ahmad<br>WhatsApp: +2349011990123<br>Email: muhammadbichi09@gmail.com</p>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    document.getElementById('menuToggle').addEventListener('click', function() {
+      const nav = document.getElementById('mainNav');
+      nav.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

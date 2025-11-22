@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LoGoMo Store</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      padding-top: 70px; /* Space for fixed header */
+    }
+
+    /* Header & Navigation */
+    .container {
+      background-color: gray;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 10px 0;
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      color: white;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin-left: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #e0e0e0;
+    }
+
+    /* Mobile Menu Toggle */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      height: 3px;
+      width: 25px;
+      background-color: white;
+      margin: 3px 0;
+      transition: 0.3s;
+    }
+
+    /* Hero Section */
+    .boxer {
+      padding: 20px;
+    }
+
+    .box {
+      background-color: whitesmoke;
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .box img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 7px;
+      margin-bottom: 15px;
+    }
+
+    .box h2 {
+      margin-bottom: 10px;
+    }
+
+    /* Cars Grid */
+    h4 {
+      text-align: center;
+      background-color: whitesmoke;
+      border-radius: 8px;
+      padding: 10px;
+      margin: 20px auto;
+      max-width: 1200px;
+    }
+
+    .house {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .room {
+      background-color: antiquewhite;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .room:hover {
+      transform: translateY(-5px);
+    }
+
+    .room img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .room p {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .room button {
+      background-color: gray;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .room button:hover {
+      background-color: #555;
+    }
+
+    /* View More Button */
+    .ending {
+      text-align: center;
+      margin: 40px auto;
+      max-width: 1200px;
+      padding: 0 20px;
+    }
+
+    .ending a {
+      display: inline-block;
+      background-color: whitesmoke;
+      padding: 12px 30px;
+      text-decoration: none;
+      color: black;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 40px;
+      transition: background-color 0.3s;
+    }
+
+    .ending a:hover {
+      background-color: #e0e0e0;
+    }
+
+    /* Footer */
+    footer {
+      background-color: gray;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 50px;
+    }
+
+    footer p {
+      line-height: 1.8;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 60px;
+      }
+      
+      .menu-toggle {
+        display: flex;
+      }
+      
+      nav ul {
+        position: fixed;
+        top: 60px;
+        left: -100%;
+        width: 100%;
+        background-color: gray;
+        flex-direction: column;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+      }
+      
+      nav ul.active {
+        left: 0;
+      }
+      
+      nav ul li {
+        margin: 15px 0;
+      }
+      
+      .house {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .content {
+        padding: 0 15px;
+      }
+      
+      .boxer, .ending {
+        padding: 10px;
+      }
+      
+      .house {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+      }
+      
+      h4 {
+        margin: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="content">
+      <h1 class="logo">LoGoMo</h1>
+      <div class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <nav>
+        <ul id="nav-menu">
+          <li><a href="hm.html">Home</a></li>
+          <li><a href="inf.html">Information</a></li>
+          <li><a href="#">Store</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>  
+
+  <div class="boxer">
+    <div class="box">
+      <img src="https://img.freepik.com/premium-photo/happy-family-car-dealership-discussing-buying-car_307890-14675.jpg" alt="Happy family at car dealership">
+      <h2>Welcome to our car store</h2>
+      <p>Check out and see what we have in stock.<br>
+      Here you can buy any type of automobile, either brand new or used. We have the best prices and best cars available. Check out the cars available for now.</p>
+    </div>
+  </div>
+
+  <h4>LoGoMo Available Cars<br>Here we go!!!</h4>
+
+  <div class="house">
+    <!-- Car items would go here -->
+    <div class="room">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr_bj0Nw7DbLEQjzGVDcDZlEu1KMG7DgYo6zFElI4GiA&s=10" alt="Car model">
+      <p>
+        RANGE ROVER EVOQUE<br>
+        Premium SUV with luxury features<br>
+        <button>Place Order</button>
+      </p>
+    </div>
+    
+    <div class="room">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr_bj0Nw7DbLEQjzGVDcDZlEu1KMG7DgYo6zFElI4GiA&s=10" alt="Car model">
+      <p>
+        RANGE ROVER EVOQUE<br>
+        Premium SUV with luxury features<br>
+        <button>Place Order</button>
+      </p>
+    </div>
+    <div class="room">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr_bj0Nw7DbLEQjzGVDcDZlEu1KMG7DgYo6zFElI4GiA&s=10" alt="Car model">
+      <p>
+        RANGE ROVER EVOQUE<br>
+        Premium SUV with luxury features<br>
+        <button>Place Order</button>
+      </p>
+    </div>
+        <div class="room">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3NxzamlCZ6Rbv52mJHJTvTP647yJeF0ykYXhXtAVfKQ&s=10" alt="Car model">
+      <p>
+        RANGE ROVER EVOQUE<br>
+        Premium SUV with luxury features<br>
+        <button>Place Order</button>
+      </p>
+    </div>
+        <div class="room">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3NxzamlCZ6Rbv52mJHJTvTP647yJeF0ykYXhXtAVfKQ&s=10" alt="Car model">
+      <p>
+        RANGE ROVER EVOQUE<br>
+        Premium SUV with luxury features<br>
+        <button>Place Order</button>
+      </p>
+    </div>
+        <div class="room">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3NxzamlCZ6Rbv52mJHJTvTP647yJeF0ykYXhXtAVfKQ&s=10" alt="Car model">
+      <p>
+        RANGE ROVER EVOQUE<br>
+        Premium SUV with luxury features<br>
+        <button>Place Order</button>
+      </p>
+    </div>
+        <div class="room">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr_bj0Nw7DbLEQjzGVDcDZlEu1KMG7DgYo6zFElI4GiA&s=10" alt="Car model">
+      <p>
+        RANGE ROVER EVOQUE<br>
+        Premium SUV with luxury features<br>
+        <button>Place Order</button>
+      </p>
+    </div>
+        <div class="room">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr_bj0Nw7DbLEQjzGVDcDZlEu1KMG7DgYo6zFElI4GiA&s=10" alt="Car model">
+      <p>
+        RANGE ROVER EVOQUE<br>
+        Premium SUV with luxury features<br>
+        <button>Place Order</button>
+      </p>
+    </div>
+        <div class="room">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr_bj0Nw7DbLEQjzGVDcDZlEu1KMG7DgYo6zFElI4GiA&s=10" alt="Car model">
+      <p>
+        RANGE ROVER EVOQUE<br>
+        Premium SUV with luxury features<br>
+        <button>Place Order</button>
+      </p>
+    </div>
+        <div class="room">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUdRnmvcT6bt_-k41Dl0MtmJCftEjtL1n3kfHUVDmh4A&s=10" alt="Car model">
+      <p>
+        RANGE ROVER EVOQUE<br>
+        Premium SUV with luxury features<br>
+        <button>Place Order</button>
+      </p>
+    </div>
+        <div class="room">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUdRnmvcT6bt_-k41Dl0MtmJCftEjtL1n3kfHUVDmh4A&s=10" alt="Car model">
+      <p>
+        RANGE ROVER EVOQUE<br>
+        Premium SUV with luxury features<br>
+        <button>Place Order</button>
+      </p>
+    </div>
+        <div class="room">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUdRnmvcT6bt_-k41Dl0MtmJCftEjtL1n3kfHUVDmh4A&s=10" alt="Car model">
+      <p>
+        RANGE ROVER EVOQUE<br>
+        Premium SUV with luxury features<br>
+        <button>Place Order</button>
+      </p>
+    </div>
+      <div class="room">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUdRnmvcT6bt_-k41Dl0MtmJCftEjtL1n3kfHUVDmh4A&s=10" alt="Car model">
+      <p>
+        RANGE ROVER EVOQUE<br>
+        Premium SUV with luxury features<br>
+        <button>Place Order</button>
+      </p>
+    </div>
+     <div class="room">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUdRnmvcT6bt_-k41Dl0MtmJCftEjtL1n3kfHUVDmh4A&s=10" alt="Car model">
+      <p>
+        RANGE ROVER EVOQUE<br>
+        Premium SUV with luxury features<br>
+        <button>Place Order</button>
+      </p>
+    </div>
+   <div class="room">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUdRnmvcT6bt_-k41Dl0MtmJCftEjtL1n3kfHUVDmh4A&s=10" alt="Car model">
+      <p>
+        RANGE ROVER EVOQUE<br>
+        Premium SUV with luxury features<br>
+        <button>Place Order</button>
+      </p>
+    </div>
+  
+    
+    
+  </div>
+
+  <div class="ending">
+    <a href="store.html">View More</a>
+  </div>
+
+  <footer>
+    <p>LoGoMo Online Car Store &copy; 2025<br>By Abdullahi Ahmad<br>WhatsApp: +2349011990123<br>Email: muhammadbichi09@gmail.com</p>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navMenu = document.getElementById('nav-menu');
+    
+    mobileMenu.addEventListener('click', function() {
+      mobileMenu.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
